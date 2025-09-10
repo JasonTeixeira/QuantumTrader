@@ -1,0 +1,329 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+.pybuilder/
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# pipenv
+Pipfile.lock
+
+# poetry
+poetry.lock
+
+# pdm
+.pdm.toml
+
+# PEP 582
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+# PyCharm
+.idea/
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Local History for Visual Studio Code
+.history/
+
+# Built Visual Studio Code Extensions
+*.vsix
+
+# MacOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# Data files
+*.csv
+*.h5
+*.hdf5
+*.parquet
+*.pickle
+*.pkl
+*.npy
+*.npz
+*.feather
+*.arrow
+*.db
+*.sqlite
+*.sqlite3
+
+# But keep sample data
+!sample_data/
+!test_data/
+!fixtures/
+
+# Secrets and credentials
+*.pem
+*.key
+*.crt
+*.p12
+secrets/
+credentials/
+.secrets/
+.credentials/
+config/secrets.yaml
+config/credentials.yaml
+
+# API Keys
+.api_keys
+api_keys.json
+api_keys.yaml
+
+# Trading specific
+*.order
+*.trade
+*.position
+backtest_results/
+live_trading/
+paper_trading/
+
+# ML/AI specific
+mlruns/
+*.h5
+*.pb
+*.onnx
+*.pt
+*.pth
+*.pkl
+models/*.bin
+checkpoints/
+tensorboard/
+wandb/
+clearml/
+neptune/
+
+# Logs
+logs/
+*.log
+*.out
+*.err
+
+# Cache
+cache/
+.cache/
+*.cache
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+
+# Documentation build
+docs/_build/
+docs/.doctrees/
+site/
+
+# Performance profiling
+*.prof
+*.lprof
+*.stats
+.scalene/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+postgres-data/
+mysql-data/
+redis-data/
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+
+# Kubernetes
+kubeconfig
+*.kubeconfig
+
+# Configuration overrides
+*.local.yaml
+*.local.yml
+*.local.json
+config.local.yaml
+settings.local.json
+
+# Research notebooks output
+research/*.html
+research/*.pdf
+
+# Custom
+workspace/
+scratch/
+sandbox/
+private/

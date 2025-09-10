@@ -1,0 +1,104 @@
+# RiskLab - Risk Analytics Platform Requirements
+-r ../requirements-base.txt
+
+# Quantitative Finance
+quantlib==1.30
+QuantLib-Python==1.30
+pyfin==0.5.0
+mibian==0.1.3  # Options pricing
+
+# Risk Metrics
+pyfolio-reloaded==0.9.5
+empyrical-reloaded==0.5.9
+riskfolio-lib==4.2.0
+arch==6.1.0  # GARCH models
+copulas==0.9.1
+
+# Portfolio Optimization
+cvxpy==1.3.2
+cvxopt==1.3.1
+pyportfolioopt==1.5.3
+pypfopt==1.5.3
+
+# Statistical Modeling
+statsmodels==0.14.0
+linearmodels==4.31
+factor-analyzer==0.5.0
+pymc==5.7.2
+arviz==0.16.1
+
+# Monte Carlo Simulation
+numpy-financial==1.0.0
+sobol-seq==0.2.0
+pyDOE2==1.3.0
+
+# Greeks & Derivatives
+py_vollib==1.0.2
+py_vollib_vectorized==0.1.2
+opstrat==0.1.7
+
+# Market Risk
+VaR==0.1.0
+cvar-optimization==1.1.2
+
+# Credit Risk
+creditrisk==0.1.4
+
+# Visualization
+plotly==5.15.0
+dash==2.11.1
+dash-bootstrap-components==1.4.2
+bokeh==3.2.1
+altair==5.0.1
+holoviews==1.17.1
+
+# Dashboard Components
+dash-daq==0.5.0
+dash-table==5.0.0
+dash-cytoscape==0.3.0
+jupyter-dash==0.4.2
+
+# Time Series
+prophet==1.1.4
+pmdarima==2.0.3
+sktime==0.22.0
+tsfresh==0.20.1
+
+# Reporting
+reportlab==4.0.4
+xlsxwriter==3.1.2
+openpyxl==3.1.2
+python-pptx==0.6.21
+weasyprint==59.0
+
+# Financial Data
+pandas-datareader==0.10.0
+yahoofinancials==1.14
+fredapi==0.5.0
+
+# API Framework
+fastapi==0.100.0
+uvicorn[standard]==0.23.1
+slowapi==0.1.8  # Rate limiting
+
+# WebSocket Support
+python-socketio==5.9.0
+websockets==11.0.3
+
+# Background Tasks
+celery==5.3.1
+celery-beat==2.5.0
+flower==2.0.1
+
+# Caching
+memcached==1.61
+pylibmc==1.6.3
+
+# Authentication
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+
+# Cloud Storage
+boto3==1.28.9
+azure-storage-blob==12.17.0
+google-cloud-storage==2.10.0
