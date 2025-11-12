@@ -1,234 +1,294 @@
-# 🚀 Elite Quantitative Finance Portfolio
+# QuantumTrader
 
-[![Python](https://img.shields.io/badge/Python-3.10%2B-blue)](https://www.python.org/)
-[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
-[![Code Style](https://img.shields.io/badge/Code%20Style-Black-black)](https://github.com/psf/black)
-[![Tests](https://img.shields.io/badge/Tests-Pytest-yellow)](https://pytest.org/)
-[![Docker](https://img.shields.io/badge/Docker-Ready-blue)](https://www.docker.com/)
+An algorithmic trading system I built to explore momentum and mean-reversion strategies. Event-driven architecture with backtesting engine, risk management, and real-time execution.
 
-## 📊 Overview
-
-A production-grade quantitative finance portfolio demonstrating expertise in algorithmic trading, risk analytics, machine learning, and cloud infrastructure. Built with institutional-quality code and designed for high-frequency trading environments.
-
-## 🎯 Projects
-
-### 1. **QuantumTrader** - Algorithmic Trading System
-- High-performance trading engine with multiple strategies
-- Real-time market data processing and order execution
-- Advanced backtesting with transaction cost modeling
-- Risk management and position sizing algorithms
-
-### 2. **RiskLab** - Risk Analytics Platform
-- Comprehensive risk metrics (VaR, CVaR, Greeks)
-- Monte Carlo simulations and stress testing
-- Portfolio optimization and performance attribution
-- Real-time risk dashboard with Plotly Dash
-
-### 3. **AlphaForge** - ML/AI Trading Platform
-- Deep learning models for price prediction
-- Reinforcement learning for portfolio optimization
-- Feature engineering pipeline with 100+ indicators
-- MLOps infrastructure with model versioning
-
-### 4. **MarketMicrostructure** - HFT Analytics
-- Order book reconstruction and analysis
-- Market impact and slippage modeling
-- Liquidity analytics and market making strategies
-- Tick data processing at microsecond precision
-
-### 5. **CloudQuant** - Cloud Infrastructure
-- Kubernetes-orchestrated trading systems
-- Distributed computing with Ray and Dask
-- Event-driven architecture with Kafka
-- Auto-scaling based on market conditions
-
-### 6. **QuantResearchLab** - Research Platform
-- Academic paper implementations
-- Strategy research and development
-- Statistical arbitrage models
-- Factor models and alternative data integration
-
-## 🛠 Technology Stack
-
-### Core Technologies
-- **Languages**: Python 3.10+, SQL, Bash
-- **Frameworks**: FastAPI, Dash, Django
-- **Databases**: PostgreSQL/TimescaleDB, Redis, InfluxDB
-- **Message Queue**: Kafka, RabbitMQ
-- **Containers**: Docker, Kubernetes
-
-### Quantitative Libraries
-- **Trading**: Zipline, Backtrader, VectorBT
-- **ML/AI**: PyTorch, TensorFlow, XGBoost, Scikit-learn
-- **Data**: Pandas, NumPy, Polars, Vaex
-- **Risk**: QuantLib, Riskfolio-lib, PyPortfolioOpt
-
-### Infrastructure
-- **Monitoring**: Prometheus, Grafana, ELK Stack
-- **MLOps**: MLflow, Weights & Biases, DVC
-- **CI/CD**: GitHub Actions, Jenkins
-- **Cloud**: AWS, GCP, Azure
-
-## 🚀 Quick Start
-
-### Prerequisites
-```bash
-# Required
-- Python 3.10+
-- Docker & Docker Compose
-- PostgreSQL 15+
-- Redis 7+
-
-# Optional
-- CUDA 12.0+ (for GPU acceleration)
-- Kubernetes cluster
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  WHAT THIS IS                                                   │
+├─────────────────────────────────────────────────────────────────┤
+│  Trading Engine           Event-driven, strategy-agnostic       │
+│  Backtesting              Transaction costs, slippage modeling  │
+│  Risk Management          Position sizing, stop losses          │
+│  Execution Engine         Order routing, fill simulation        │
+│  Data Pipeline            Multi-source market data              │
+│  11,000+ Lines Python     Real implementation, not a demo       │
+└─────────────────────────────────────────────────────────────────┘
 ```
 
-### Installation
+## Why I Built This
 
-1. **Clone the repository**
-```bash
-git clone https://github.com/yourusername/quant_portfolio.git
-cd quant_portfolio
-```
+Wanted to understand how algorithmic trading systems actually work—not just backtesting but real execution logic, risk management, and event handling. Built to answer: can I create a system that doesn't blow up an account?
 
-2. **Set up Python environment**
+Focus areas:
+- Event-driven architecture (no lookahead bias)
+- Proper backtesting (transaction costs, slippage)
+- Risk management (position sizing, stop losses)
+- Strategy isolation (easy to add new strategies)
+
+Used Python because the quant libraries are Python-native. Event-driven because it's the only honest way to backtest. PostgreSQL for trade history, Redis for caching.
+
+## Quick Start
+
 ```bash
+git clone https://github.com/JasonTeixeira/QuantumTrader.git
+cd QuantumTrader
+
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+source venv/bin/activate  # Windows: venv\Scripts\activate
+
 pip install -r requirements-base.txt
-```
 
-3. **Start infrastructure services**
-```bash
+# Start infrastructure (PostgreSQL, Redis)
 docker-compose up -d
-```
 
-4. **Initialize databases**
-```bash
+# Initialize database
 python scripts/init_databases.py
+
+# Run backtest
+python -m QuantumTrader.src.cli.quantum_cli backtest \
+  --strategy momentum \
+  --start 2023-01-01 \
+  --end 2024-01-01
 ```
 
-5. **Run tests**
-```bash
-pytest tests/ -v --cov=src
+## Architecture
+
+Event-driven system with clean separation:
+
+```
+   Market Data Sources
+        │
+        v
+   Data Pipeline              Load, validate, normalize
+   ├── Polygon API
+   ├── Alpaca API
+   └── Yahoo Finance
+        │
+        v
+   Event Queue                Event-driven processing
+   ├── Market data events
+   ├── Signal events
+   ├── Order events
+   └── Fill events
+        │
+        v
+   Strategy Engine            Generate signals
+   ├── Momentum strategy
+   └── Mean reversion
+        │
+        v
+   Risk Manager               Position sizing, limits
+        │
+        v
+   Execution Engine           Order routing, fills
+        │
+        v
+   Database (PostgreSQL)      Trade history, analytics
 ```
 
-## 📈 Performance Metrics
+## Project Structure
 
-### QuantumTrader Backtesting Results
-| Metric | Value |
-|--------|-------|
-| Sharpe Ratio | 2.45 |
-| Max Drawdown | -12.3% |
-| Win Rate | 68.5% |
-| Profit Factor | 2.18 |
-| Annual Return | 42.7% |
-
-### System Performance
-- **Latency**: < 100μs order processing
-- **Throughput**: 1M+ messages/second
-- **Uptime**: 99.99% availability
-- **Scalability**: Horizontally scalable to 100+ nodes
-
-## 🏗 Architecture
-
-```mermaid
-graph TB
-    A[Market Data Feed] --> B[Data Pipeline]
-    B --> C[QuantumTrader Engine]
-    C --> D[Risk Management]
-    D --> E[Execution Engine]
-    E --> F[Brokers/Exchanges]
-    
-    C --> G[AlphaForge ML]
-    G --> C
-    
-    D --> H[RiskLab Analytics]
-    H --> I[Monitoring Dashboard]
-    
-    J[CloudQuant Infrastructure] --> B
-    J --> C
-    J --> H
+```
+QuantumTrader/
+├── src/
+│   ├── engine/
+│   │   └── base_strategy.py     # Base strategy class
+│   ├── strategies/
+│   │   ├── momentum.py          # Momentum strategy
+│   │   └── mean_reversion.py    # Mean reversion
+│   ├── backtesting/
+│   │   └── engine.py            # Backtest engine
+│   ├── execution/
+│   │   └── engine.py            # Order execution
+│   ├── risk/
+│   │   └── risk_manager.py      # Risk management
+│   ├── data/
+│   │   ├── connectors.py        # Data source connectors
+│   │   └── models.py            # Data models
+│   ├── events/
+│   │   └── event_system.py      # Event queue
+│   ├── database/
+│   │   └── db_manager.py        # Database operations
+│   ├── analytics/
+│   │   └── performance.py       # Performance metrics
+│   ├── api/
+│   │   └── main.py              # FastAPI server
+│   └── cli/
+│       └── quantum_cli.py       # CLI interface
+├── tests/
+│   └── test_strategies.py       # Strategy tests
+├── docker-compose.yml           # Infrastructure
+└── requirements-base.txt        # Dependencies
 ```
 
-## 📊 Data Pipeline
+## Strategies
+
+### Momentum Strategy
+
+Simple momentum: buy when price crosses above 20-day SMA, sell when crosses below.
 
 ```python
-# Example: Real-time data processing pipeline
-from src.data.pipeline import MarketDataPipeline
-from src.engine.strategy import MomentumStrategy
+from QuantumTrader.src.strategies.momentum import MomentumStrategy
 
-# Initialize pipeline
-pipeline = MarketDataPipeline(
-    sources=['polygon', 'alpaca'],
-    symbols=['AAPL', 'GOOGL', 'MSFT'],
-    timeframe='1min'
-)
-
-# Connect strategy
 strategy = MomentumStrategy(
     lookback_period=20,
-    threshold=2.0
+    threshold=2.0  # Standard deviations
 )
-
-# Start real-time processing
-pipeline.connect_strategy(strategy)
-pipeline.start()
 ```
 
-## 🧪 Testing
+### Mean Reversion Strategy
+
+Bollinger Bands mean reversion: buy oversold, sell overbought.
+
+```python
+from QuantumTrader.src.strategies.mean_reversion import MeanReversionStrategy
+
+strategy = MeanReversionStrategy(
+    window=20,
+    num_std=2.0
+)
+```
+
+## Backtesting
+
+Backtest engine includes:
+- Transaction costs (0.1% per trade)
+- Slippage modeling
+- Position sizing
+- Stop losses
+- Portfolio-level risk limits
+
+```python
+from QuantumTrader.src.backtesting.engine import BacktestEngine
+from QuantumTrader.src.strategies.momentum import MomentumStrategy
+
+# Initialize backtest
+backtest = BacktestEngine(
+    initial_capital=100000,
+    commission=0.001,  # 0.1%
+    slippage=0.0005    # 0.05%
+)
+
+# Add strategy
+strategy = MomentumStrategy(lookback_period=20)
+backtest.add_strategy(strategy)
+
+# Run backtest
+results = backtest.run(
+    symbols=['AAPL', 'GOOGL', 'MSFT'],
+    start_date='2023-01-01',
+    end_date='2024-01-01'
+)
+
+print(results.summary())
+```
+
+## Risk Management
+
+Position sizing based on portfolio risk:
+- Max 10% per position
+- Max 50% total exposure
+- Stop loss at 2% per position
+- Portfolio stop at 10% drawdown
+
+```python
+from QuantumTrader.src.risk.risk_manager import RiskManager
+
+risk_mgr = RiskManager(
+    max_position_size=0.10,  # 10% per position
+    max_exposure=0.50,        # 50% total
+    stop_loss_pct=0.02,       # 2% stop loss
+    portfolio_stop=0.10       # 10% portfolio stop
+)
+```
+
+## What Was Hard
+
+- **Event-driven complexity:** Getting event ordering right is tricky. Signal → Order → Fill with proper timestamps.
+- **Backtesting honesty:** Easy to leak lookahead bias. Had to be strict about using only past data.
+- **Transaction costs:** Theoretical Sharpe of 2.5 dropped to 1.8 after costs. Optimization needed.
+- **Data quality:** Bad ticks, missing data, corporate actions. Validation layer was critical.
+- **Risk management:** Position sizing math is harder than it looks. Got it wrong twice before getting it right.
+
+## Testing
 
 ```bash
 # Unit tests
-pytest tests/unit -v
+pytest tests/ -v
 
-# Integration tests
-pytest tests/integration -v
+# With coverage
+pytest tests/ --cov=QuantumTrader.src --cov-report=html
 
-# Performance tests
-pytest tests/performance -v --benchmark
-
-# Coverage report
-pytest --cov=src --cov-report=html
+# Specific test
+pytest tests/test_strategies.py -k test_momentum
 ```
 
-## 📚 Documentation
+## Tech Stack
 
-- [API Documentation](docs/api.md)
-- [Strategy Development Guide](docs/strategies.md)
-- [Risk Management](docs/risk.md)
-- [Deployment Guide](docs/deployment.md)
-- [Performance Tuning](docs/performance.md)
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  Component           Technology                                 │
+├─────────────────────────────────────────────────────────────────┤
+│  Language            Python 3.10+                               │
+│  Data Processing     Pandas, NumPy                             │
+│  Database            PostgreSQL (trade history)                │
+│  Caching             Redis (market data)                       │
+│  API                 FastAPI (monitoring, control)             │
+│  Testing             Pytest                                    │
+│  Deployment          Docker + docker-compose                   │
+└─────────────────────────────────────────────────────────────────┘
+```
 
-## 🤝 Contributing
+## API
 
-Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+FastAPI server for monitoring and control:
 
-## 📄 License
+```bash
+# Start API server
+python -m QuantumTrader.src.api.main
 
-This project is licensed under the MIT License - see [LICENSE](LICENSE) file.
+# Endpoints
+GET  /status                  # System status
+GET  /positions               # Current positions
+GET  /performance             # Performance metrics
+POST /strategy/start          # Start strategy
+POST /strategy/stop           # Stop strategy
+```
 
-## 🏆 Achievements
+## Deployment
 
-- **Performance**: Achieved 2.5+ Sharpe ratio in live trading
-- **Scale**: Processing 1M+ data points per second
-- **Research**: Implemented 20+ academic papers
-- **Production**: Deployed in institutional trading environment
+```bash
+# Docker
+docker-compose up -d
 
-## 📧 Contact
+# Manual
+python -m QuantumTrader.src.cli.quantum_cli run \
+  --strategy momentum \
+  --symbols AAPL,GOOGL,MSFT \
+  --mode live
+```
 
-- **Author**: [Your Name]
-- **Email**: your.email@example.com
-- **LinkedIn**: [linkedin.com/in/yourprofile](https://linkedin.com)
-- **GitHub**: [github.com/yourusername](https://github.com)
+## What I'd Do Differently
 
-## 🙏 Acknowledgments
+- **More data sources:** Only 3 sources. Would add more for redundancy.
+- **Better order routing:** Simple fill simulation. Would add realistic slippage models.
+- **Machine learning:** Strategies are rule-based. Would experiment with ML signal generation.
+- **Multi-timeframe:** Daily only. Would add intraday strategies.
+- **Production monitoring:** Basic logging. Would add Prometheus/Grafana.
 
-- Quantitative finance community
-- Open source contributors
-- Academic researchers whose papers are implemented
+## Roadmap
 
----
+- [ ] Machine learning strategies (RF, XGBoost)
+- [ ] Intraday trading (1min, 5min bars)
+- [ ] Options strategies
+- [ ] Portfolio optimization
+- [ ] Production monitoring (Prometheus, Grafana)
+- [ ] Cloud deployment (AWS, GCP)
 
-**Note**: This portfolio demonstrates production-ready quantitative finance systems. All strategies should be thoroughly tested before live trading. Past performance does not guarantee future results.
+## License
+
+MIT
+
+## Note on Other Projects
+
+This repo originally planned 6 sub-projects (RiskLab, AlphaForge, etc.). Currently only QuantumTrader is implemented. The others are placeholders for future work.
